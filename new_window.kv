@@ -1,0 +1,49 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
+
+<MainWindow>:
+    name: "main"
+    BoxLayout:
+        orientation: "vertical"
+        size_hint: 1, 1
+        Label:
+            text: "Main Window"
+        Button:
+            text: "Go to Second Window"
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+        Button:
+            
+            text: "Go to Third Window"
+            on_release:
+                app.root.current = "third"
+                root.manager.transition.direction = "left"
+
+<SecondWindow>:
+    name: "second"
+    BoxLayout:
+        orientation: "vertical"
+        size_hint: 1, 1
+        Label:
+            text: "Second Window"
+        Button:
+            text: "Go to Main Window"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
+<ThirdWindow>:
+    name: "third"
+    BoxLayout:
+        orientation: "vertical"
+        size_hint: 1, 1
+        Label:
+            text: "Third Window"
+        Button:
+            text: "Go to Main Window"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
