@@ -4,36 +4,105 @@ WindowManager:
     ThirdWindow:
 
 <MainWindow>:
-    name: "main"
-    BoxLayout:
+    name: "main_window"
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
         orientation: "vertical"
-        size_hint: 1, 1
-        Label:
-            text: "Main Window"
-        Button:
-            text: "Go to Second Window"
-            on_release:
-                app.root.current = "second"
-                root.manager.transition.direction = "left"
-        Button:
-            
-            text: "Go to Third Window"
-            on_release:
-                app.root.current = "third"
-                root.manager.transition.direction = "left"
+        padding: 25
+        spacing: 25
+
+        MDLabel:
+            id: welcome_label
+            text: "Welcome"
+            font_size: 25
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDTextField:
+            id: user
+            hint_text: "Username"
+            size_hint_x: None
+            width: 200
+            font_size: "18sp"
+            icon_right: "account"
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            id: password
+            password: True
+            hint_text: "Password"
+            size_hint_x: None
+            width: 200
+            font_size: "18sp"
+            icon_right: "eye-off"
+            pos_hint: {"center_x": 0.5}
+
+        MDRoundFlatButton:
+            text: "Login"
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            on_press: root.logger()
+        
+        MDRoundFlatButton:
+            text: "Clear"
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            on_press: root.clear()
+
+        MDRoundFlatButton:
+            text: "Register"
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            on_press: root.register()
 
 <SecondWindow>:
     name: "second"
-    BoxLayout:
+    FloatLayout:
         orientation: "vertical"
         size_hint: 1, 1
-        Label:
-            text: "Second Window"
-        Button:
+        
+        MDRoundFlatButton:
             text: "Go to Main Window"
+            font_size: 18
+            pos_hint: {"center_x": 0.85, "center_y": 0.9}
             on_release:
-                app.root.current = "main"
+                app.root.current = "main_window"
                 root.manager.transition.direction = "right"
+        
+        MDCard:
+            size_hint: None, None
+            size: 400, 500
+            pos_hint: {"center_x": 0.3, "center_y": 0.5}
+            orientation: "vertical"
+            padding: 25
+            spacing: 25
+            MDFlatButton:
+                text: "Go to Third Window"
+                font_size: 18
+                pos_hint: {"center_x": 0.85, "center_y": 0.1}
+                on_release:
+                    app.root.current = "third"
+                    root.manager.transition.direction = "left"
+                
+
+            MDFlatButton:
+                text: "create a widget"
+                font_size: 18
+                pos_hint: {"center_x": 0.85, "center_y": 0}
+                on_release:
+
+            ScrollView:
+                MDList:
+                    id: lista_butoes
+                    OneLineListItem:
+                        text: "Evento"
+                    OneLineListItem:
+                        text: "Evento1"
+
 
 <ThirdWindow>:
     name: "third"
@@ -45,5 +114,5 @@ WindowManager:
         Button:
             text: "Go to Main Window"
             on_release:
-                app.root.current = "main"
+                app.root.current = "main_window"
                 root.manager.transition.direction = "right"
